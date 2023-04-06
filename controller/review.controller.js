@@ -49,8 +49,9 @@ exports.reviewUpload=async(req,res)=>{
 
 
 exports.getReview=async(req,res)=>{
+    const prodId=req.query.prodId;
     try {
-        ImageModel.find({})
+        ImageModel.find({prodId})
         .then(data=>res.json(data))
         .catch(err=>{
             res.status(408).json({err})
