@@ -2,6 +2,10 @@ const mongoose=require('mongoose')
 
 
 const ImageSchema=mongoose.Schema({
+    prodId:{
+        type:String
+
+    },
     username:{
         type:String,
         required:true
