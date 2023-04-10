@@ -38,6 +38,7 @@ exports.reviewUpload=async(req,res)=>{
                 
 
             })
+            console.log(newImg)
             newImg.save()
             .then(()=>res.status(200).json(newImg))
             .catch((err)=>console.log(err))
