@@ -15,13 +15,14 @@ const Storage = multer.diskStorage({
     }
 })
 
-const upload = multer({
-    storage: Storage
-}).single('testImg')
+// const upload = multer({
+//     storage: Storage
+// }).single('testImg')
+const upload = upload.none()
 
 exports.reviewUpload = async (req, res) => {
 
-    upload.none()(req, res, (err) => {
+    upload(req, res, (err) => {
         if (err) {
             console.log(err)
         }
