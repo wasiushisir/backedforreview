@@ -22,13 +22,37 @@ const upload = upload.none()
 
 exports.reviewUpload = async (req, res) => {
 
-    upload(req, res, (err) => {
-        if (err) {
-            console.log(err)
-        }
-        else {
+    // upload(req, res, (err) => {
+    //     if (err) {
+    //         console.log(err)
+    //     }
+    //     else {
+    //         console.log(req.body)
+    //         console.log(req.file)
+
+    //         const newImg = new ImageModel({
+    //             prodId: req.body.prodId,
+    //             username: req.body.username,
+    //             review: req.body.review,
+
+    //             image: req.file.path
+    //             // contentType:'image/png'
+
+
+    //         })
+    //         console.log(newImg)
+    //         newImg.save()
+    //             .then(() => res.status(200).json(newImg))
+    //             .catch((err) => console.log(err))
+    //     }
+    // })
+
+
+
+    
+       
             console.log(req.body)
-            console.log(req.file)
+            // console.log(req.file)
 
             const newImg = new ImageModel({
                 prodId: req.body.prodId,
@@ -44,8 +68,8 @@ exports.reviewUpload = async (req, res) => {
             newImg.save()
                 .then(() => res.status(200).json(newImg))
                 .catch((err) => console.log(err))
-        }
-    })
+        
+    
 
 }
 
