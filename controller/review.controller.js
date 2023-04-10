@@ -49,9 +49,9 @@ exports.reviewUpload = async (req, res) => {
 
 
 
-    
-       
-            console.log(req.body)
+    upload.none(), function (req, res, next) {
+        // req.body contains the text fields
+        console.log(req.body)
             // console.log(req.file)
 
             const newImg = new ImageModel({
@@ -68,6 +68,10 @@ exports.reviewUpload = async (req, res) => {
             newImg.save()
                 .then(() => res.status(200).json(newImg))
                 .catch((err) => console.log(err))
+      }
+    
+       
+            
         
     
 
