@@ -19,6 +19,7 @@ const Storage = multer.diskStorage({
 //     storage: Storage
 // }).single('testImg')
 const upload = multer()
+const upload2 =upload.none()
 
 exports.reviewUpload = async (req, res) => {
 
@@ -49,7 +50,7 @@ exports.reviewUpload = async (req, res) => {
 
 
 
-    upload.none(), function (req, res, next) {
+    upload2(req, res,(err)=>{
         // req.body contains the text fields
         console.log(req.body)
             // console.log(req.file)
@@ -68,7 +69,7 @@ exports.reviewUpload = async (req, res) => {
             newImg.save()
                 .then(() => res.status(200).json(newImg))
                 .catch((err) => console.log(err))
-      }
+      })
     
        
             
