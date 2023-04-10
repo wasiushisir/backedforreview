@@ -25,6 +25,7 @@ exports.reviewUpload=async(req,res)=>{
             console.log(err)
         }
         else{
+            console.log(req.body)
             console.log(req.file)
             const newImg=new ImageModel({
                 prodId:req.body.prodId,
