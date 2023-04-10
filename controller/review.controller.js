@@ -54,21 +54,29 @@ exports.reviewUpload = async (req, res) => {
         // req.body contains the text fields
         console.log(req.body)
             // console.log(req.file)
+            if(err){
+                console.log(err)
+            }
 
-            const newImg = new ImageModel({
-                prodId: req.body.prodId,
-                username: req.body.username,
-                review: req.body.review,
+            else{
+                const newImg = new ImageModel({
+                    prodId: req.body.prodId,
+                    username: req.body.username,
+                    review: req.body.review,
+    
+                    // image: req.file.path
+                    // contentType:'image/png'
+    
+    
+                })
+                console.log(newImg)
+                newImg.save()
+                    .then(() => res.status(200).json(newImg))
+                    .catch((err) => console.log(err))
 
-                image: req.file.path
-                // contentType:'image/png'
+            }
 
-
-            })
-            console.log(newImg)
-            newImg.save()
-                .then(() => res.status(200).json(newImg))
-                .catch((err) => console.log(err))
+           
       })
     
        
