@@ -31,7 +31,7 @@ exports.reviewUpload=async(req,res)=>{
            
             const newImg=new ImageModel({
                 prodId:req.body.prodId,
-                username:req.body.username,
+                username:req.body.usernam,
                 review:req.body.review,
                 
                 image: req.file.path
