@@ -8,7 +8,7 @@ const ImageSchema=mongoose.Schema({
     },
     username:{
         type:String,
-        required:true
+       
     },
     review:{
         type:String,
