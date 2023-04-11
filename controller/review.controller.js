@@ -21,7 +21,7 @@ const Storage = multer.diskStorage({
 // const upload = multer()
 // const upload2 =upload.none()
 
-const upload=multer()
+const upload = multer({ storage: Storage })
 
 const cpUpload = upload.fields([{ name: 'testImg' }])
 
