@@ -18,8 +18,12 @@ const Storage = multer.diskStorage({
 // const upload = multer({
 //     storage: Storage
 // }).single('testImg')
-const upload = multer()
-const upload2 =upload.none()
+// const upload = multer()
+// const upload2 =upload.none()
+
+const upload=multer()
+
+const cpUpload = upload.fields([{ name: 'testImg' }])
 
 exports.reviewUpload = async (req, res) => {
 
@@ -50,39 +54,57 @@ exports.reviewUpload = async (req, res) => {
 
 
 
-    upload2(req, res,(err)=>{
-        // req.body contains the text fields
-        console.log(req.body)
-            // console.log(req.file)
-            if(err){
-                console.log(err)
+    // upload2(req, res,(err)=>{
+    //     // req.body contains the text fields
+    //     console.log(req.body)
+    //         // console.log(req.file)
+    //         if(err){
+    //             console.log(err)
+    //         }
+
+    //         else{
+    //             const newImg = new ImageModel({
+    //                 prodId: req.body.prodId,
+    //                 username: req.body.username,
+    //                 review: req.body.review,
+
+    //                 // image: req.file.path
+    //                 // contentType:'image/png'
+
+
+    //             })
+    //             console.log(newImg)
+    //             newImg.save()
+    //                 .then(() => res.status(200).json(newImg))
+    //                 .catch((err) => console.log(err))
+
+    //         }
+
+
+    //   })
+
+    cpUpload(req, res, (err) => {
+        if (err) {
+            console.log(err)
+        }
+
+        else{
+            if(req.files.image){
+                for(let item of req.files.image){
+                    mainitem+=`/${item.path}`
+                }
             }
 
-            else{
-                const newImg = new ImageModel({
-                    prodId: req.body.prodId,
-                    username: req.body.username,
-                    review: req.body.review,
-    
-                    // image: req.file.path
-                    // contentType:'image/png'
-    
-    
-                })
-                console.log(newImg)
-                newImg.save()
-                    .then(() => res.status(200).json(newImg))
-                    .catch((err) => console.log(err))
+            res.send(`${mainitem}`)
+            mainitem=' ';
+        }
 
-            }
+    })
 
-           
-      })
-    
-       
-            
-        
-    
+
+
+
+
 
 }
 
