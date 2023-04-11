@@ -90,7 +90,7 @@ exports.reviewUpload = async (req, res) => {
 
         else{
             if(req.files.image){
-                for(let item of req.files.image){
+                for(let item of req.files.testImg){
                     mainitem+=`/${item.path}`
                 }
             }
