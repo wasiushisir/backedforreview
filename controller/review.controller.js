@@ -96,7 +96,7 @@ exports.reviewUpload = async (req, res) => {
             }
 
             res.send(`${mainitem}`)
-            mainitem=' ';
+            mainitem='';
         }
 
     })
