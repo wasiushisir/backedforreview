@@ -15,42 +15,39 @@ const Storage = multer.diskStorage({
     }
 })
 
-// const upload = multer({
-//     storage: Storage
-// }).single('testImg')
+const upload = multer({
+    storage: Storage
+}).single('testImg')
 // const upload = multer()
 // const upload2 =upload.none()
 
-const upload = multer({ storage: Storage })
-
-const cpUpload = upload.fields([{ name: 'testImg' }])
 
 exports.reviewUpload = async (req, res) => {
 
-    // upload(req, res, (err) => {
-    //     if (err) {
-    //         console.log(err)
-    //     }
-    //     else {
-    //         console.log(req.body)
-    //         console.log(req.file)
+    upload(req, res, (err) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            console.log(req.body)
+            console.log(req.file)
 
-    //         const newImg = new ImageModel({
-    //             prodId: req.body.prodId,
-    //             username: req.body.username,
-    //             review: req.body.review,
+            const newImg = new ImageModel({
+                prodId: req.body.prodId,
+                username: req.body.username,
+                review: req.body.review,
 
-    //             image: req.file.path
-    //             // contentType:'image/png'
+                image: req.file.path
+                // contentType:'image/png'
 
 
-    //         })
-    //         console.log(newImg)
-    //         newImg.save()
-    //             .then(() => res.status(200).json(newImg))
-    //             .catch((err) => console.log(err))
-    //     }
-    // })
+            })
+            console.log(newImg)
+            newImg.save()
+                .then(() => res.status(200).json(newImg))
+                .catch((err) => console.log(err))
+        }
+    })
 
 
 
@@ -83,23 +80,7 @@ exports.reviewUpload = async (req, res) => {
 
     //   })
 
-    cpUpload(req, res, (err) => {
-        if (err) {
-            console.log(err)
-        }
-
-        else{
-            if(req.files.image){
-                for(let item of req.files.testImg){
-                    mainitem+=`/${item.path}`
-                }
-            }
-
-            res.send(`${mainitem}`)
-            mainitem='';
-        }
-
-    })
+    
 
 
 
